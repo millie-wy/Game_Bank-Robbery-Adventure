@@ -1,35 +1,40 @@
-* {
-    margin: 0;
-}
-
-body {
-    box-sizing: border-box;
-}
+* { margin: 0; }
+body { box-sizing: border-box; color: #3c3c3c; }
+.clear { clear: both; }
 
 header {
     background-color: rgb(133, 116, 116);
-    display: flex;
     position: fixed;
     right: 0;
     left: 0;
     top: 0;
     justify-content: space-between;
     padding: 1rem;
+    color: white;
 }
 
-#chatbox {
+.chatbox-system {
     background-color: rgb(230, 223, 223);
-    width: 80%;
-    height: 4rem;
-    border-radius: 5rem;
+    width: 80vw;
+    overflow: hidden;
+    height:fit-content;
+    border-radius: 1rem;
+    padding: 1rem 0.5rem 0.5rem 1rem;
+}
+
+.chatbox-user {
+    background-color: rgb(209, 192, 192);
+    width: 80vw;
+    overflow: hidden;
+    float: right;
+    border-radius: 1rem;
     padding: 1rem 0.5rem 0.5rem;
 }
 
 form {
     background-color: rgb(133, 116, 116);
-    position: fixed;
     height: 4rem;
-    bottom: 0;
+    bottom: 1rem;
     left: 0;
     right: 0;
     display: flex;
@@ -37,37 +42,59 @@ form {
     align-items: center;
 }
 
+footer {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(133, 116, 116);
+    color: white;
+    padding-bottom: 1.5rem;
+}
+
 textarea {
-    width: 80%;
+    width: 70vw;
     height: 2rem;
     border: none;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     font-size: large;
 }
 
 button {
     border: none; 
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     width: 5rem;
     height: 2rem;
     margin-left: 1rem;
+    background-color: white;
+    color: #3c3c3c;
 }
 
-#chatbox img {
+.chatbox-system img {
     border: 5px solid black;
     border-radius: 10rem;
     width: 3rem;
+    height: 3rem;
     float: left;
-    margin-left: 1.5rem;
+    margin-left: 0.5rem;
 }
 
-#chatbox p {
-    float: left;
-    margin-left: 1.5rem;
+.chatbox-user img {
+    border: 5px solid black;
+    border-radius: 10rem;
+    width: 3rem;
+    height: 3rem;
+    float: right;
+    margin-right: 0.5rem;
 }
+
+.chatbox-system p, .chatbox-user p {
+    float: left;
+    margin: 0.5rem;
+}
+
 
 #content {
     height: 80vh;
-    margin: 5rem 1rem 2rem 1rem;
+    margin: 5rem 1rem 20rem 1rem;
 
 }
