@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+}
+
+body {
+    box-sizing: border-box;
+}
+
+header {
+    background-color: rgb(133, 116, 116);
+    display: flex;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+#chatbox {
+    background-color: rgb(230, 223, 223);
+    width: 80%;
+    height: 4rem;
+    border-radius: 5rem;
+    padding: 1rem 0.5rem 0.5rem;
+}
+
+form {
+    background-color: rgb(133, 116, 116);
+    position: fixed;
+    height: 4rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+textarea {
+    width: 80%;
+    height: 2rem;
+    border: none;
+    border-radius: 1rem;
+    font-size: large;
+}
+
+button {
+    border: none; 
+    border-radius: 1rem;
+    width: 5rem;
+    height: 2rem;
+    margin-left: 1rem;
+}
+
+#chatbox img {
+    border: 5px solid black;
+    border-radius: 10rem;
+    width: 3rem;
+    float: left;
+    margin-left: 1.5rem;
+}
+
+#chatbox p {
+    float: left;
+    margin-left: 1.5rem;
+}
+
+#content {
+    height: 80vh;
+    margin: 5rem 1rem 2rem 1rem;
+
+}
