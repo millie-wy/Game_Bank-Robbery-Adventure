@@ -1,6 +1,12 @@
 * { margin: 0; }
-body { box-sizing: border-box; color: #3c3c3c; }
-.clear { clear: both; }
+
+body { 
+    box-sizing: border-box; 
+    color: #3c3c3c; 
+    font-family: 'Khand', sans-serif;
+}
+
+/* header */
 
 header {
     background-color: rgb(133, 116, 116);
@@ -13,42 +19,26 @@ header {
     color: white;
 }
 
-.chatbox-system {
-    background-color: rgb(230, 223, 223);
-    width: 80vw;
-    overflow: hidden;
-    height:fit-content;
-    border-radius: 1rem;
-    padding: 1rem 0.5rem 0.5rem 1rem;
+header > h1 {
+    font-family: 'Yuji Syuku', serif;
+    font-size: 1.2rem;
 }
 
-.chatbox-user {
-    background-color: rgb(209, 192, 192);
-    width: 80vw;
-    overflow: hidden;
-    float: right;
-    border-radius: 1rem;
-    padding: 1rem 0.5rem 0.5rem;
-}
+/* main */
 
-form {
+.user-textarea {
     background-color: rgb(133, 116, 116);
-    height: 4rem;
+    height: 3.5rem;
     bottom: 1rem;
     left: 0;
     right: 0;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-footer {
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgb(133, 116, 116);
-    color: white;
-    padding-bottom: 1.5rem;
+#content {
+    height: auto;
+    margin: 5rem 0rem 5.5rem 0rem;
 }
 
 textarea {
@@ -57,7 +47,22 @@ textarea {
     border: none;
     border-radius: 0.5rem;
     font-size: large;
+    resize: none;
+    white-space: nowrap;
 }
+
+/* footer */
+
+footer {
+    background-color: rgb(133, 116, 116);
+    color: white;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1rem;
+}
+
+/* buttons */ 
 
 button {
     border: none; 
@@ -69,32 +74,35 @@ button {
     color: #3c3c3c;
 }
 
-.chatbox-system img {
-    border: 5px solid black;
-    border-radius: 10rem;
-    width: 3rem;
-    height: 3rem;
-    float: left;
-    margin-left: 0.5rem;
+#reset-button {
+    background-color: #362727;
+    color: white;
 }
 
-.chatbox-user img {
-    border: 5px solid black;
-    border-radius: 10rem;
-    width: 3rem;
-    height: 3rem;
+/* div setting for js function printText & printUserText */
+
+.chatbox-system {
+    background-color: rgb(230, 223, 223);
+    width: 80vw;
+    overflow: hidden;
+    height:fit-content;
+    border-radius: 1rem;
+    padding: 0.8rem;
+    margin: 1rem;
+}
+
+.chatbox-user {
+    background-color: rgb(209, 192, 192);
+    width: 80vw;
+    overflow: hidden;
     float: right;
-    margin-right: 0.5rem;
+    height:fit-content;
+    border-radius: 1rem;
+    padding: 0.8rem;
+    margin: 0rem 1rem 1rem 1rem;
 }
 
 .chatbox-system p, .chatbox-user p {
     float: left;
     margin: 0.5rem;
-}
-
-
-#content {
-    height: 80vh;
-    margin: 5rem 1rem 20rem 1rem;
-
 }

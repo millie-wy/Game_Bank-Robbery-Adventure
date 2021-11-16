@@ -4,30 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minigame - Bankrobber | Laboration 1</title>
+    <title>Bank Robbery Adventure | Laboration 1 | FED21G WYC</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Khand:wght@300;400;600&family=Yuji+Syuku&display=swap" rel="stylesheet">
+    
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="box-border">
     <header class="flex">
-        <h1 class="text-xl">Minigame: Bankrobber</h1>
-        <button id="restart">Restart</button>
+        <h1>Bank Robbery Adventure</h1>
+        <div class="header-right">
+            <button id="reset-button">Reset</button>
+            <button id="start-button">Begin!</button>
+        </div>
     </header>
     <main>
         <div id="content">
-            <!-- <div class="chatbox-system flex mt-4">
+             <!-- <div class="chatbox-system flex mt-4">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quis eos, vel fugiat molestias quas ut a obcaecati numquam dicta sed, quasi optio nihil omnis quos, libero inventore vero ratione! Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus unde fuga exercitationem recusandae doloribus corrupti in voluptate aspernatur quibusdam! Eligendi consectetur eveniet dolorem quam maxime perferendis esse neque natus similique! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates incidunt illum praesentium, quis animi eaque repellat atque placeat architecto tempora, fugit, itaque enim dolorum obcaecati maxime rerum asperiores commodi eos!</p>
             </div>
             <div class="chatbox-user flex mt-4">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis sint ipsa voluptates. Quia accusamus beatae impedit, cumque, pariatur amet eius assumenda dolor ipsum libero quae cum consectetur aperiam. Sapiente, animi!</p> 
-            </div> -->
+            </div>     -->
         </div>
-        <form class="fixed">
-            <textarea name="input" id="userInput" cols="1" rows="1"></textarea>
+    
+        <div class="user-textarea flex fixed">
+            <textarea name="input" id="userInput" cols="1" rows="1" wrap="off"></textarea>
             <button id="sendResponse">Send</button>
-        </form>
+        </div> 
     </main>
     <footer class="fixed text-xs text-center h-4">Millie Cheung FED21G 2021</footer>
 </body>
