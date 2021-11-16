@@ -14,6 +14,7 @@ let player = {
     hasCompanion: false,
     hasTravelBag: false,
     robbedBank: false,
+    visitedGunStore: false,
 }  
 console.log(player)
 
@@ -62,18 +63,20 @@ let scenes = [
 
 { //4 mainstreet
     onScene: function() {
-        printText("You are now on the main street. Where do you want to go?" + "<br>" + "<b>1 = Gun Store; 2 = Department Store; 3 = Gangster Bar; 4 = Bank; 5 = Hidden tunnel (Talk to Mill)</b>")
+        printText("You are now on the main street. Where do you want to go?" + "<br>" + "<b>1 = Gun Store; 2 = Pharmacy; 3 = Department Store; 4 = Gangster Bar; 5 = Bank; 6 = Hidden tunnel (Talk to Mill)</b>")
     }, 
-    onUserInput: function(text) {
+    onUserInput: function(text) { // 27 gun store
         if (text === "1") {
-            goToNextScene(3);    
-        } else if (text === "2") { // 20 department store
+            goToNextScene(27);    
+        } else if (text === "2") { // 30 pharmacy
+            goToNextScene(30);
+        } else if (text === "3") { // 20 department store
             goToNextScene(20); 
-        } else if (text === "3") { // 10 ganster bar
+        } else if (text === "4") { // 10 ganster bar
             goToNextScene(10); 
-        } else if (text === "4") {  // 6 bank
+        } else if (text === "5") {  // 6 bank
             goToNextScene(6); 
-        } else if (text === "5") { // 5 hidden tunnel 
+        } else if (text === "6") { // 5 hidden tunnel 
             goToNextScene(5); 
         } else {
             printText("Invalid option, try again!");
@@ -83,10 +86,10 @@ let scenes = [
 { //5 hidden tunnel
     onScene: function() {
         if (!player.robbedBank) {
-            printText("Why are you still here!? Go rob the bank!")
+            printText("<b>Mill:</b> Why are you still here " + player.name + "!? Go rob the bank!")
             goToNextScene(4);
         } else {
-            printText("Good job [name]! You are now a qualified robber in InvincibleDestroyers, bro!")
+            printText("Good job " + player.name + "! You are now a qualified robber in InvincibleDestroyers, bro!")
             printText("(plays very strange BGM)")
             printText("If you want to restart the game, press 'Reset' above.")
         }
@@ -96,7 +99,7 @@ let scenes = [
     onScene: function() {
         if(!player.hasSpanner || !player.hasMask || !player.hasGun || !player.hasTravelBag || !player.hasCompanion) {
             printText("(At the bank)")
-            printText("Why am I here? I cant do anything without all the tools and equipments, weapon and a companion ...")
+            printText("Why am I here? I can't do anything without all the tools and equipments, a weapon and a companion...")
             goToNextScene(4);
         } else {
             goToNextScene(7);
@@ -145,7 +148,7 @@ let scenes = [
     onUserInput: function(text) {
         if (text === "1") {
             printText("Oops now the police has came. You are under arrested")
-            goToNextScene(99); //99 gameover
+            goToNextScene(33); //33 gameover
         } else if (text === "2") {
             printText("You have successfully robbed 10M from the bank. Run back to the hidden tunnel now!")
             goToNextScene(4);
@@ -192,7 +195,7 @@ let scenes = [
 { //12 ganster bar  - for companion - choose one to talk to 
     onScene: function() {
         printText("Looking for a companion?")
-        printText("Choose a person to talk to." + "<br>" + "<b>1 = Fat Roger; 2 = T-rex; 3= Madman" + " or" + "<b> 4 = Back to main street</b>")
+        printText("Choose a person to talk to." + "<br>" + "<b>1 = Fat Roger; 2 = T-rex; 3 = Madman</b>"+ " or" + "<b> 4 = Back to main street</b>")
     },
     onUserInput: function(text) {
         if (text === "1") {
@@ -294,7 +297,7 @@ let scenes = [
     onUserInput: function(text) {
         if (text === "1") {
             printText("<b>T-rex</b> Unfortunately I am an undercover police. You are under arrested")
-            goToNextScene(99); // 99 gameover
+            goToNextScene(33); // 33 gameover
         } else if (text === "2") {
             printText("<b>T-rex:</b> Hey! Are you sure?")
             goToNextScene(12); //12 ganster bar  - for companion - choose one to talk to 
@@ -406,13 +409,8 @@ let scenes = [
 { //24 department store - clothing 
     onScene: function() {
         printText("(At Clothing)");
-        if (player.hasMask) {
-            printText("You don't seem to need anything here.")
-            goToNextScene(20);
-        } else {
-            printText("A mask may actually be necessary!" + "<br>" + "<b>1 = Look for a mask; 2 = It's fine. Back to main street</b>")
-        }
-    },
+        printText("A mask may actually be necessary!" + "<br>" + "<b>1 = Look for a mask; 2 = It's fine. Back to main street</b>")
+        },
     onUserInput: function(text) {
         if (text === "1") {
             player.hasMask = true;
@@ -458,7 +456,107 @@ let scenes = [
     },
 },
 
-{ //99 gameover
+{ //27 gun store 
+    onScene: function() {
+        printText("At gun store")
+        if (!player.visitedGunStoreOnce) {
+            goToNextScene(28); // 28 gun store - first visit
+        } else if (player.visitedGunStoreOnce && !player.hasTravelBag) {
+            printText("Get me the bag, or I will not sell the gun!")
+            goToNextScene(4); // 4 main street
+        } else if (player.visitedGunStoreOnce && player.hasTravelBag) {
+            printText("Good job! Here is the gun.")
+            printText("Hold on - Take this empty travel bag with you, otherwise you will be caught if they see you have a AK-47.")
+            player.hasTravelBag = true;
+            player.hasGun = true;
+            goToNextScene(4); // 4 main street 
+        }
+    }
+},
+
+{ // 28 gun store - first visit
+    onScene: function() {
+        printText("<b>Fred:</b> Welcome to Westcoast’s Guns, what can I help you?" + "<br>" + "<b>1 = Ask 'Do you know how to rob a bank?'; 2 = 'Buy an AK-47'</b>")
+    },
+    onUserInput(text) {
+        if(text === "1") {
+            printText("<b>Fred:</b> No joking, dude.")
+            goToNextScene(28);
+        } else if (text === "2") {
+            goToNextScene(29);
+        } else {
+            printText("Invalid option, try again!");
+        }
+    },
+},
+
+{ //29 gun store - tell me more 
+    onScene: function() {
+        printText("<b>Fred:</b> It is forbidden to sell AK-47 in Westcoast after the vault robbery by the gang InvincibleDestroyer last month. But I have one myself. If you do me a favour I may consider selling you that privately." + "<br>" + "<b>1 = OK tell me more</b>")
+    },
+    onUserInput(text) {
+        if (text === "1") {
+            printText("<b>Fred:</b> Find the locker in the pharmacy. Type in the code 4698 and bring back the travel bag, and I will sell you the gun. Good luck!")
+            visitedGunStore = true;
+            goToNextScene(4);
+        } else {
+            printText("Invalid option, try again!");
+        }
+    },
+},
+
+{ //30 pharmacy 
+    onScene: function() {
+        if (!player.visitedGunStore) {
+            printText("The pharmacy is not opened yet. Explore the other places first!")
+            goToNextScene(4);
+        } else if (player.hasTravelBag) {
+            printText("There is nothing else to do here. Let's go somewhere else!")
+            goToNextScene(4);
+        } else {
+            goToNextScene(31);
+        }
+    },
+},
+
+{ //31 pharmacy - find bag 
+    onScene: function() {
+        printText("At pharmacy");
+        printText("How do you want to find the locker?" + "<br>" + "<b>1 = Ask a staff; 2 = Look for it yourself; 3 = Back to main street</b>")
+    },
+    onUserInput(text) {
+        if (text === "1") {
+            printText("<b>Staff:</b> The locker is located beside the cashier")
+            goToNextScene(32);
+        } else if (text === "2") {
+            printText("Let's see...")
+            goToNextScene(32);
+        } else if (text === "3") {
+            goToNextScene(4);
+        } else {
+            printText("Invalid option, try again!");
+        }
+    },
+},
+
+{ //32 pharmacy - crack the code 
+    onScene: function() {
+        printText("You have found the locker! But what is the passcode" + "<br>" + "<b>1 = 4589; 2 = 4689; 3 = 4789</b>")
+    },
+    onUserInput(text) {
+        if (text === "2") {
+            printText("(Locker opens)")
+            printText("You have got the travel bag!")
+            player.hasTravelBag = true;
+            goToNextScene(4)
+        } else {
+            printText("Wrong passcode. Try again!")
+        }
+    },
+},
+
+
+{ //33 gameover
     onScene: function() {
         printText("<b>GAMEOVER</b>")
         printText("If you want to restart the game, press 'Reset' above.")
