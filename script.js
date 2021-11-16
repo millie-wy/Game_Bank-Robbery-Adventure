@@ -8,12 +8,14 @@ function main() {
 
 let player = {
     name: "", 
-    hasAllTools: false, 
+    hasSpanner: false,
+    hasMask: false,
     hasGun: false,
     hasCompanion: false,
     hasTravelBag: false,
     robbedBank: false,
-}
+}  
+console.log(player)
 
 let activeScene = 0;
 let scenes = [
@@ -23,26 +25,27 @@ let scenes = [
     }, 
     onUserInput: function(text) {
         player.name = text;
+        console.log(player)
         goToNextScene(1); //1 greeting
     }
 }, 
 { //1 greeting
     onScene: function() {
-        printText("Welcome " + player.name + ", our new robber-to-be. My name is Mill and I am your trainer from InvincibleDestroyers. In order to be a part of us, you have to show us your qualification.")
+        printText("<b>Mill:</b> Welcome " + player.name + ", our new robber-to-be. My name is Mill and I am your trainer from InvincibleDestroyers. In order to be a part of us, you have to show us your qualification.")
         goToNextScene(2)  //2 intro
     },
     onUserInput: function(text) {}
 },
 { //2 intro
     onScene: function() {
-        printText("Your first mission is to rob a bank without being caught. Here is a map of the city, go find the right companions and the tools to complete your mission.")
-        printText("Remember - you can get arrested if a wrong choice is made. Do you understand everything I said?" + "<br>" + "<b>1 = Yes; 2 = No.</b>")
+        printText("<b>Mill:</b> Your first mission is to rob a bank without being caught. Here is a map of the city, go find the right companions and the tools to complete your mission.")
+        printText("<b>Mill:</b> Remember - you can get arrested if a wrong choice is made. Do you understand everything I said?" + "<br>" + "<b>1 = Yes; 2 = No.</b>")
     }, 
     onUserInput: function(text) {
         if (text === "1") {
             goToNextScene(3); //4. mill farewell    
         } else if (text === "2") {
-            printText("Ok let me repeat.");
+            printText("<b>Mill:</b> Ok let me repeat.");
             goToNextScene(2); 
         } else {
             printText("Invalid option, try again!");
@@ -51,7 +54,7 @@ let scenes = [
 },
 { //3 mill farewell
     onScene: function() {
-        printText("Great! Come back to me once you have completed the mission. (Mill left)")
+        printText("<b>Mill:</b> Great! Come back to me once you have completed the mission. (Mill left)")
         goToNextScene(4);
     },
     onUserInput: function(text) {}
@@ -64,9 +67,8 @@ let scenes = [
     onUserInput: function(text) {
         if (text === "1") {
             goToNextScene(3);    
-        } else if (text === "2") {
-            printText("Ok let me repeat.");
-            goToNextScene(2); 
+        } else if (text === "2") { // 20 department store
+            goToNextScene(20); 
         } else if (text === "3") { // 10 ganster bar
             goToNextScene(10); 
         } else if (text === "4") {  // 6 bank
@@ -92,7 +94,7 @@ let scenes = [
 },
 { //6 bank
     onScene: function() {
-        if(!player.hasAllTools || !player.hasGun || !player.hasTravelBag || !player.hasCompanion) {
+        if(!player.hasSpanner || !player.hasMask || !player.hasGun || !player.hasTravelBag || !player.hasCompanion) {
             printText("(At the bank)")
             printText("Why am I here? I cant do anything without all the tools and equipments, weapon and a companion ...")
             goToNextScene(4);
@@ -143,8 +145,7 @@ let scenes = [
     onUserInput: function(text) {
         if (text === "1") {
             printText("Oops now the police has came. You are under arrested")
-            printText("<b>GAMEOVER</b>")
-            printText("If you want to restart the game, press 'Reset' above.")
+            goToNextScene(99); //99 gameover
         } else if (text === "2") {
             printText("You have successfully robbed 10M from the bank. Run back to the hidden tunnel now!")
             goToNextScene(4);
@@ -228,14 +229,16 @@ let scenes = [
 
 { //14 ganster bar - for gun - barbara 
     onScene: function() {
-        printText("Barbara: I have worked here for 8 years. I know the Master had one but he has not shown up for more than a month.")
-        printText("Barbara: Try go to the gun store and ask Fred.")
-        printText("What do you want to do now?" + "<br>" + "<b>1 = Talk to Pablo (drug dealer); 2 = Back to main street</b>")
+        printText("<b>Barbara:</b> I have worked here for 8 years. I know the Master had one but he has not shown up for more than a month.")
+        printText("<b>Barbara:</b> Try go to the gun store and ask Fred.")
+        printText("What do you want to do now?" + "<br>" + "<b>1 = Talk to Pablo (drug dealer); 2 = Back to the bar reception; 3 = Back to main street</b>")
     },
     onUserInput: function(text) {
         if (text === "1") {
             goToNextScene(15); // 15 ganster bar - for gun - pablo
         } else if (text === "2") {
+            goToNextScene(10); // 10 ganster bar
+        } else if (text === "3") {
             goToNextScene(4); // 4 main street
         } else {
             printText("Invalid option, try again!");
@@ -244,22 +247,224 @@ let scenes = [
 }, 
 
 
-{ //14 ganster bar - for gun - pablo
+{ //15 ganster bar - for gun - pablo
     onScene: function() {
-        printText("Pablo: I don't think anyone with an AK-47 nowadays would consider selling it. Would you like some candies though? :-/ ")
-        printText("What do you want to do now?" + "<br>" + "<b>1 = Talk to Barbara (bartender); 2 = Back to main street</b>")
+        printText("<b>Pablo:</b> I don't think anyone with an AK-47 nowadays would consider selling it. Would you like some candies though? :-/ ")
+        printText("What do you want to do now?" + "<br>" + "<b>1 = Talk to Barbara (bartender); 2 = Back to the bar reception; 3 = Back to main street</b>")
     },
     onUserInput: function(text) {
         if (text === "1") {
             goToNextScene(14); // 14 ganster bar - for gun - barbara
+        } else if (text === "2") {
+            goToNextScene(10); // 10 ganster bar
+        } else if (text === "3") {
+            goToNextScene(4); // 4 main street
+        } else {
+            printText("Invalid option, try again!");
+        }
+    },
+}, 
+
+{ //16 ganster bar - for companion - fat roger
+    onScene: function() {
+        printText("<b>Fat Roger:</b> Bank robbing? I have done this 10+ times in the past 20 years. There was one time I got caught by the police and sat in the jail for 4 years.")
+        printText("<b>Fat Roger:</b> We can do this business together but given the fact that you are so green, I want 80% of the money, otherwise we have no deal")
+        printText("Choose Fat Roger as your companion?" + "<br>" + "<b>1 = Yes; 2 = No</b>")
+    },
+    onUserInput: function(text) {
+        if (text === "1") {
+            player.hasCompanion = true;
+            console.log(player);
+            goToNextScene(19); // 19 confirm companion 
+        } else if (text === "2") {
+            printText("<b>Fat Roger:</b> Well. Good luck kid")
+            goToNextScene(12); //12 ganster bar  - for companion - choose one to talk to 
+        } else {
+            printText("Invalid option, try again!");
+        }
+    },
+}, 
+
+{ //17 ganster bar - for companion - t-rex
+    onScene: function() {
+        printText("<b>T-rex:</b> What do you mean robbing a bank? Which day and bank do you plan to go? What do you have now to make sure you wont get caught by the police?")
+        printText("<b>T-rex:</b> Do you already have a companion? What is his name? Why not count me in?")
+        printText("Choose T-rex as your companion?" + "<br>" + "<b>1 = Yes; 2 = No</b>")
+    },
+    onUserInput: function(text) {
+        if (text === "1") {
+            printText("<b>T-rex</b> Unfortunately I am an undercover police. You are under arrested")
+            goToNextScene(99); // 99 gameover
+        } else if (text === "2") {
+            printText("<b>T-rex:</b> Hey! Are you sure?")
+            goToNextScene(12); //12 ganster bar  - for companion - choose one to talk to 
+        } else {
+            printText("Invalid option, try again!");
+        }
+    },
+}, 
+
+{ //18 ganster bar - for companion - madman
+    onScene: function() {
+        printText("<b>Madman:</b> I have just finished my 15 years of imprisonment due to murder.")
+        printText("<b>Madman:</b> I have never robbed a bank but it has been my dream. Just count me in.")
+        printText("Choose Madman as your companion?" + "<br>" + "<b>1 = Yes; 2 = No</b>")
+    },
+    onUserInput: function(text) {
+        if (text === "1") {
+            player.hasCompanion = true;
+            console.log(player);
+            goToNextScene(19); // 19 confirm companion 
+        } else if (text === "2") {
+            printText("<b>Madman:</b> OK. Your loss")
+            goToNextScene(12); //12 ganster bar  - for companion - choose one to talk to 
+        } else {
+            printText("Invalid option, try again!");
+        }
+    },
+},
+
+{ //19 confirm companion 
+    onScene: function() {
+        printText("Nice! You have a companion!")
+        printText("What do you want to do now?" + "<br>" + "<b>1 = Stay in the bar; 2 = Back to main street</b>")
+    },
+    onUserInput: function(text) {
+        if (text === "1") {
+            goToNextScene(10);
+        } else if (text === "2") {
+            goToNextScene(4);
+        } else {
+            printText("Invalid option, try again!");
+        }
+    },
+},
+
+{ //20 department store 
+    onScene: function() {
+        if (!player.hasSpanner && !player.hasMask) {
+            goToNextScene(21); // 21 department store - first visit 
+        } else if (!player.hasSpanner || !player.hasMask) {
+            goToNextScene(22); // 22 ganster bar - missed one thing
+        } else if (player.hasSpanner && player.hasMask) {
+            printText("(At department store)")
+            printText("You have spent enough time here. Let's go somewhere else!");
+            goToNextScene(4); // 4 main street
+        }
+    },
+    onUserInput: function(text) {}
+},
+
+{ //21 department stroe - first visit
+    onScene: function() {
+        printText("(At department store)")
+        printText("Seem like you may need something for robbing a bank. Let's look for them.")
+        printText("Which section do you want to explore?" + "<br>" + "<b>1 = Tools & Equipments; 2 = Clothing; 3 = Back to main street</b>")
+    },
+    onUserInput: function(text) {
+        if (text === "1") {
+            goToNextScene(23); // 23 department store - t&e 
+        } else if (text === "2") {
+            goToNextScene(24); // 24 department store - clothing
+        } else if (text === "3") {
+            goToNextScene(4) // 4 main street
+        } else {
+            printText("Invalid option, try again!");
+        }
+    },
+},
+
+{ //22 department store - missed one thing 
+    onScene: function() {
+        printText("You are missing one tool, let's look for it!")
+        if (!player.hasSpanner) {
+            goToNextScene(23);
+        } else if (!player.hasMask) {
+            goToNextScene(24);
+        }
+    },
+},
+
+{ //23 department store - t&e 
+    onScene: function() {
+        printText("(At Tools & Equipments)");
+        printText("What about a spanner." + "<br>" + "<b>1 = Look for a spanner; 2 = It's fine. Back to main street</b>")
+        },
+    onUserInput: function(text) {
+        if (text === "1") {
+            player.hasSpanner = true;
+            console.log(player);
+            goToNextScene(25); // 25 department store - confirm tool spanner 
         } else if (text === "2") {
             goToNextScene(4); // 4 main street
         } else {
             printText("Invalid option, try again!");
         }
     },
-}, 
+},
 
+{ //24 department store - clothing 
+    onScene: function() {
+        printText("(At Clothing)");
+        if (player.hasMask) {
+            printText("You don't seem to need anything here.")
+            goToNextScene(20);
+        } else {
+            printText("A mask may actually be necessary!" + "<br>" + "<b>1 = Look for a mask; 2 = It's fine. Back to main street</b>")
+        }
+    },
+    onUserInput: function(text) {
+        if (text === "1") {
+            player.hasMask = true;
+            console.log(player);
+            goToNextScene(26); // 26 department store - confirm tool mask
+        } else if (text === "2") {
+            goToNextScene(4); // 4 main street
+        } else {
+            printText("Invalid option, try again!");
+        }
+    },
+},
+
+{ //25 department store - confirm tool spanner
+    onScene: function() {
+        printText("Nice! You have a <b>spanner</b>!")
+        printText("What do you want to do now?" + "<br>" + "<b>1 = Back to lobby; 2 = Back to main street</b>")
+    },
+    onUserInput: function(text) {
+        if (text === "1") {
+            goToNextScene(20); // 20 department store
+        } else if (text === "2") {
+            goToNextScene(4); // 4 main street
+        } else {
+            printText("Invalid option, try again!");
+        }
+    },
+},
+
+{ //26 department store - confirm tool mask
+    onScene: function() {
+        printText("Nice! You have a <b>mask</b>!")
+        printText("What do you want to do now?" + "<br>" + "<b>1 = Back to lobby; 2 = Back to main street</b>")
+    },
+    onUserInput: function(text) {
+        if (text === "1") {
+            goToNextScene(20); // 20 department store 
+        } else if (text === "2") {
+            goToNextScene(4); // 4 main street
+        } else {
+            printText("Invalid option, try again!");
+        }
+    },
+},
+
+{ //99 gameover
+    onScene: function() {
+        printText("<b>GAMEOVER</b>")
+        printText("If you want to restart the game, press 'Reset' above.")
+    },
+    onUserInput: function(text) {}
+}
 
 ]
 
