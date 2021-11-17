@@ -1,11 +1,14 @@
 window.onload = main;
 
+/** Functions to run when program starts */
 function main() {
     addEventListeners();
 }
 
 // Scenes start 
-
+/**
+ * @typedef {( name: String, hasSpanner: Boolean, hasMask: Boolean, hasGun: Boolean, hasCompanion: Boolean, hasTravelBag: Boolean, robbedBank: Boolean, visitedGunStore: Boolean )} player a player object
+ */
 let player = {
     name: "", 
     hasSpanner: false,
@@ -19,9 +22,13 @@ let player = {
 console.log(player)
 
 let activeScene = 0;
+
+/**
+ * @typedef {( onScene: function(), onUserInput: function() )} scene a scene object 
+ */
 let scenes = [
 { //0. input name
-    onScene: function() {                                   //what is function()
+    onScene: function() {
         printText("👾 Before we start, tell me your name! 👾")
     }, 
     onUserInput: function(text) {
@@ -60,7 +67,6 @@ let scenes = [
     },
     onUserInput: function(text) {}
 },
-
 { //4 mainstreet
     onScene: function() {
         printTextWithDelay("You are now on the main street. Where do you want to go?" + "<br>" + "<b>1 = Gun Store; 2 = Pharmacy; 3 = Department Store; 4 = Gangster Bar; 5 = Bank; 6 = Hidden tunnel (Talk to Mill)</b>", 1200)
@@ -93,7 +99,8 @@ let scenes = [
             printTextWithDelay("(🎶plays very weird BGM🎵 )", 1000)
             printTextWithDelay("📢 If you want to restart the game, press 'Reset' above.", 1500)
         }
-    }
+    },
+    onUserInput: function(text) {}
 },
 { //6 bank
     onScene: function() {
@@ -110,7 +117,6 @@ let scenes = [
     },
     onUserInput:function(text) {}
 },
-
 { //7 bank - rob the bank
     onScene: function () {
         printTextWithDelay("(At the bank)", 500)
@@ -126,7 +132,6 @@ let scenes = [
         }
     },
 },
-
 { //8 bank - choose tools to rob
     onScene: function () {
         printTextWithDelay("Which tools do you use?" + "<br>" + "<b>1 = Spanner; 2 = AK-47</b>", 500)
@@ -144,7 +149,6 @@ let scenes = [
         }
     },
 },
-
 { //9 bank - second try to rob
     onScene: function () {
         printTextWithDelay("What do you do now?" + "<br>" + "<b>1 = Surrender; 2 = Fire the AK-47</b>", 1000)
@@ -162,7 +166,6 @@ let scenes = [
         }
     },
 },
-
 { //10 ganster bar 
     onScene: function () {
         printTextWithDelay("(At the bar)", 500)
@@ -179,7 +182,6 @@ let scenes = [
     },
     onUserInput:function(text) {}
 },
-
 { //11 ganster bar - first visit 
     onScene: function() {
         printTextWithDelay("What do you want here?" + "<br>" + "<b>1 = Find a companion; 2 = Find an AK-47; 3 = Back to main street</b>", 500)
@@ -196,7 +198,6 @@ let scenes = [
         }
     },
 },
-
 { //12 ganster bar  - for companion - choose one to talk to 
     onScene: function() {
         printTextWithDelay("Looking for a companion?", 500)
@@ -216,7 +217,6 @@ let scenes = [
         }
     },
 },
-
 { //13 ganster bar  - for gun - choose one to talk to 
     onScene: function() {
         printTextWithDelay("Looking for an AK-47?", 500)
@@ -234,7 +234,6 @@ let scenes = [
         }
     },
 },
-
 { //14 ganster bar - for gun - barbara 
     onScene: function() {
         printTextWithDelay("<b>Barbara 🧑🏻‍🦰:</b> I have worked here for 8 years. I know the Master had one but he has not shown up for more than a month.", 500)
@@ -253,8 +252,6 @@ let scenes = [
         }
     },
 }, 
-
-
 { //15 ganster bar - for gun - pablo
     onScene: function() {
         printTextWithDelay("<b>Pablo 👨🏼‍🦲:</b> I don't think anyone with an AK-47 nowadays would consider selling it. Would you like some candies though? :-/ ", 500)
@@ -272,11 +269,10 @@ let scenes = [
         }
     },
 }, 
-
 { //16 ganster bar - for companion - fat roger
     onScene: function() {
         printTextWithDelay("<b>Fat Roger 🧔🏻:</b> Bank robbing? I have done this 10+ times in the past 20 years. There was one time I got caught by the police and sat in the jail for 4 years.", 500)
-        printTextWithDelay("<b>Fat Roger 🧔🏻:</b> We can do this business together but given the fact that you are so green, I want 80% of the money, otherwise we have no deal", 1000)
+        printTextWithDelay("<b>Fat Roger 🧔🏻:</b> We can do this business together but given the fact that you are so green, I want 80% of the money, otherwise we have no deal.", 1000)
         printTextWithDelay("Choose Fat Roger as your companion?" + "<br>" + "<b>1 = Yes; 2 = No</b>", 2000)
     },
     onUserInput: function(text) {
@@ -285,14 +281,13 @@ let scenes = [
             console.log(player);
             goToNextScene(19); // 19 confirm companion 
         } else if (text === "2") {
-            printTextWithDelay("<b>Fat Roger 🧔🏻:</b> Well. Good luck kid", 500)
+            printTextWithDelay("<b>Fat Roger 🧔🏻:</b> Well. Good luck kid!", 500)
             goToNextScene(12); //12 ganster bar  - for companion - choose one to talk to 
         } else {
             printTextWithDelay("❌ Invalid option, try again!", 500);
         }
     },
 }, 
-
 { //17 ganster bar - for companion - t-rex
     onScene: function() {
         printTextWithDelay("<b>T-rex 👨🏻‍🦱:</b> What do you mean robbing a bank? Which day and bank do you plan to go? What do you have now to make sure you wont get caught by the police?", 500)
@@ -311,7 +306,6 @@ let scenes = [
         }
     },
 }, 
-
 { //18 ganster bar - for companion - madman
     onScene: function() {
         printTextWithDelay("<b>Madman 👱🏻‍♂️:</b> I have just finished my 15 years of imprisonment due to murder.", 500)
@@ -324,14 +318,13 @@ let scenes = [
             console.log(player);
             goToNextScene(19); // 19 confirm companion 
         } else if (text === "2") {
-            printTextWithDelay("<b>Madman 👱🏻‍♂️:</b> OK. Your loss", 500)
+            printTextWithDelay("<b>Madman 👱🏻‍♂️:</b> OK. Your loss.", 500)
             goToNextScene(12); //12 ganster bar  - for companion - choose one to talk to 
         } else {
             printTextWithDelay("❌ Invalid option, try again!", 500);
         }
     },
 },
-
 { //19 confirm companion 
     onScene: function() {
         printTextWithDelay("⭐️ Fantastic! You have got a <b>companion</b>!", 500)
@@ -347,7 +340,6 @@ let scenes = [
         }
     },
 },
-
 { //20 department store 
     onScene: function() {
         if (!player.hasSpanner && !player.hasMask) {
@@ -362,7 +354,6 @@ let scenes = [
     },
     onUserInput: function(text) {}
 },
-
 { //21 department stroe - first visit
     onScene: function() {
         printTextWithDelay("(At department store)", 500)
@@ -381,22 +372,21 @@ let scenes = [
         }
     },
 },
-
 { //22 department store - missed one thing 
     onScene: function() {
         printTextWithDelay("You are missing one tool, let's look for it!", 500)
         if (!player.hasSpanner) {
-            goToNextScene(23);
+            goToNextScene(23); // 23 department store - t&e
         } else if (!player.hasMask) {
-            goToNextScene(24);
+            goToNextScene(24); // 24 department store - clothing
         }
     },
+    onUserInput: function(text) {}
 },
-
 { //23 department store - t&e 
     onScene: function() {
         printTextWithDelay("(At Tools & Equipments)", 500);
-        printTextWithDelay("What about a spanner." + "<br>" + "<b>1 = Look for a spanner; 2 = It's fine. Back to main street</b>", 1000)
+        printTextWithDelay("What about a spanner?" + "<br>" + "<b>1 = Look for a spanner; 2 = It's fine. Back to main street</b>", 1000)
         },
     onUserInput: function(text) {
         if (text === "1") {
@@ -410,7 +400,6 @@ let scenes = [
         }
     },
 },
-
 { //24 department store - clothing 
     onScene: function() {
         printTextWithDelay("(At Clothing)", 500);
@@ -428,7 +417,6 @@ let scenes = [
         }
     },
 },
-
 { //25 department store - confirm tool spanner
     onScene: function() {
         printTextWithDelay("⭐️ Nice! You have got a <b>spanner</b>!", 500)
@@ -444,7 +432,6 @@ let scenes = [
         }
     },
 },
-
 { //26 department store - confirm tool mask
     onScene: function() {
         printTextWithDelay("⭐️ Wow! You have got a <b>mask</b>!", 500)
@@ -460,7 +447,6 @@ let scenes = [
         }
     },
 },
-
 { //27 gun store 
     onScene: function() {
         printTextWithDelay("(At gun store)", 500)
@@ -474,33 +460,32 @@ let scenes = [
             goToNextScene(4); // 4 main street
         } else if (player.visitedGunStore && player.hasTravelBag) {
             printTextWithDelay("<b>Fred 👴🏻:</b> Good job! Here is the gun.", 500)
-            printTextWithDelay("<b>Fred 👴🏻:</b> Hold on - Take this empty travel bag with you, otherwise you will be caught if they see you carrying an AK-47.", 800)
+            printTextWithDelay("<b>Fred 👴🏻:</b> Hold on - Take this empty travel bag with you. You will be caught if they see you carrying an AK-47.", 800)
             printTextWithDelay("⭐️ You have got an <b>AK-47</b>!", 1100)
             player.hasTravelBag = true;
             player.hasGun = true;
             goToNextScene(4); // 4 main street 
         }
-    }
+    },
+    onUserInput: function(text) {}
 },
-
-{ // 28 gun store - first visit
+{ //28 gun store - first visit
     onScene: function() {
         printTextWithDelay("<b>Fred 👴🏻:</b> Welcome to Westcoast’s Guns, what can I help you?" + "<br>" + "<b>1 = Ask 'Do you know how to rob a bank?'; 2 = 'Buy an AK-47'; 3 = Back to main street</b>", 1000)
     },
     onUserInput(text) {
         if(text === "1") {
             printTextWithDelay("<b>Fred 👴🏻:</b> No joking, dude.", 500)
-            goToNextScene(28);
+            goToNextScene(28); // rerun this scene 28 
         } else if (text === "2") {
-            goToNextScene(29);
+            goToNextScene(29); // 29 gun store - tell me more 
         } else if (text === "3") {
-            goToNextScene(4);
+            goToNextScene(4); // 4 main street 
         } else {
             printTextWithDelay("❌ Invalid option, try again!", 500);
         }
     },
 },
-
 { //29 gun store - tell me more 
     onScene: function() {
         printTextWithDelay("<b>Fred 👴🏻:</b> It is forbidden to sell AK-47 in Westcoast after the vault robbery by the gang InvincibleDestroyers last month. But I have one myself. If you do me a favour I may consider selling you that privately." + "<br>" + "<b>1 = OK tell me more</b>", 500)
@@ -510,27 +495,26 @@ let scenes = [
             player.visitedGunStore = true;
             console.log(player);
             printTextWithDelay("<b>Fred 👴🏻:</b> Find the locker in the pharmacy. Type in the code 4698 and bring back the travel bag, and I will sell you the gun. Good luck!", 500)
-            goToNextScene(4);
+            goToNextScene(4); // 4 main street
         } else {
             printTextWithDelay("❌ Invalid option, try again!", 500);
         }
     },
 },
-
 { //30 pharmacy 
     onScene: function() {
         if (!player.visitedGunStore) {
             printTextWithDelay("The pharmacy is not opened yet. Explore the other places first!", 500)
-            goToNextScene(4);
+            goToNextScene(4); // 4 main street
         } else if (player.hasTravelBag) {
             printTextWithDelay("There is nothing else to do here. Let's go somewhere else!", 500)
-            goToNextScene(4);
+            goToNextScene(4); // 4 main street 
         } else {
-            goToNextScene(31);
+            goToNextScene(31); // 31 pharmacy - find bag
         }
     },
+    onUserInput: function(text) {}
 },
-
 { //31 pharmacy - find bag 
     onScene: function() {
         printTextWithDelay("(At pharmacy)", 500);
@@ -551,7 +535,6 @@ let scenes = [
         }
     },
 },
-
 { //32 pharmacy - crack the code 
     onScene: function() {
         printTextWithDelay("You have found the locker! But what is the passcode?" + "<br>" + "<b>1 = 4589; 2 = 4689; 3 = 4789</b>", 2000)
@@ -561,13 +544,12 @@ let scenes = [
             printTextWithDelay("(Locker opens)", 500)
             printTextWithDelay("⭐️ You have got the <b>travel bag</b>!", 1000)
             player.hasTravelBag = true;
-            goToNextScene(4)
+            goToNextScene(4) // 4 main street
         } else {
             printTextWithDelay("Wrong passcode. Try again!", 500)
         }
     },
 },
-
 { //33 gameover
     onScene: function() {
         printTextWithDelay("<b>GAMEOVER 🤯</b>", 1500)
@@ -575,11 +557,10 @@ let scenes = [
     },
     onUserInput: function(text) {}
 }
-
 ]
 
-// Functions
 
+/** .onclick function for buttons */
 function addEventListeners() {
     const sendButton = document.getElementById('sendResponse');
     sendButton.onclick = onUserInput; 
@@ -589,41 +570,53 @@ function addEventListeners() {
 
     const resetButton = document.getElementById('reset-button');
     resetButton.onclick = resetAll; 
-
-    const scrollToBottom = document.getElementById("content");
-    scrollToBottom.scrollTop = scrollToBottom.scrollHeight;
 }
 
+/** Process the user input from <input> element and print it */
 function onUserInput() {
     let answer = document.getElementById('userInput').value;
-    document.getElementById('userInput').value = ""; //dont understand this line
+    document.getElementById('userInput').value = "";
     printUserText("Your input: " + answer)
-
-    console.log("activeScene", activeScene)
-    scenes[activeScene].onUserInput(answer); //dont understand this line
+    let scene = scenes[activeScene];
+    scene.onUserInput(answer);
 }
 
+ /** Render the active scene */
 function renderScene() {
-    scenes[activeScene].onScene() //What is onScene?
+    let scene = scenes[activeScene];
+    scene.onScene();
 }
 
-function goToNextScene(newScene) {  //dont understand
+ /**
+  * Go from current scene to next scene
+  * @param {Number} newScene  - index to the new scene
+  */
+function goToNextScene(newScene) {  
     console.log("Going from scene: " + activeScene + " to " + newScene)
-    activeScene = newScene; 
+    activeScene = newScene; //dont understand
     renderScene();
 }
 
-function resetAll() {  // check later!
-    document.getElementById('content').innerHTML = "";
+/** Reload page */ 
+function resetAll() {  
     window.location.reload() 
 }
 
+/**
+ * Print a text with delay
+ * @param {String} text - the text to print
+ * @param {Number} delay - the delay time in milliseconds before the text is output
+ */
 function printTextWithDelay(text, delay) {
     setTimeout(function() {
         printText(text);
     }, delay)
 }
 
+/**
+ * Print the text parameter (user input) in a new div and scroll to bottom 
+ * @param {String} text - the text input by user 
+ */
 function printUserText(text) {
     console.log(text);
     let divUser = document.createElement("div");
@@ -633,6 +626,10 @@ function printUserText(text) {
     divUser.scrollIntoView();
 }
 
+/**
+ * Print the text parameter (system output) in a new div and scroll to bottom 
+ * @param {String} text - the system's text output 
+ */
 function printText(text) {
     let divSystem = document.createElement("div");
     divSystem.className = 'chatbox-system';
