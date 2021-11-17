@@ -24,9 +24,15 @@ header > h1 {
     font-size: 1.2rem;
 }
 
+.header-right {
+    width: 50%;
+    align-items: center;
+    justify-content: flex-end;
+}
+
 /* main */
 
-.user-textarea {
+.user-input {
     background-color: rgb(133, 116, 116);
     height: 3.5rem;
     bottom: 1rem;
@@ -38,10 +44,10 @@ header > h1 {
 
 #content {
     height: auto;
-    margin: 5rem 0rem 5.5rem 0rem;
+    margin: 6rem 0rem 5.5rem 0rem;
 }
 
-textarea {
+input {
     width: 70vw;
     height: 2rem;
     border: none;
