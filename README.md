@@ -1,12 +1,11 @@
 # Laboration-1
 Wing Yan Cheung - FED21G 
-(Detta är ett individuelt uppdrag från skolan. / This is an individual assignment from my school.)
 ----
 
 (Svenska) 
 Bankrånsäventyr
  
-Beskrivning: I denna fantasivärld är du en blivande rånare under gänget som heter InvincibleDestroyers. För att du ska visa din förmåga och mod har din chef gett dig ett uppdrag som är att råna en bank. Men innan du kan göra det måste du samlar några verktyg, ett vapen och en kompanjon...
+Beskrivning: I denna fantasivärld är du en blivande rånare under gänget som heter InvincibleDestroyers. För att du ska visa din förmåga och mod har din chef gett dig ett uppdrag som är att råna en bank. Men innan du kan göra det måste du samla ihop några verktyg, ett vapen och en kompanjon...
 
 
 (English)
