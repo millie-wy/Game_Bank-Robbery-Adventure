@@ -17,6 +17,7 @@ header {
     justify-content: space-between;
     padding: 1rem;
     color: white;
+    box-shadow: 0 0 3px 0 rgb(133, 116, 116), 0 0 8px 0 rgb(133, 116, 116);
 }
 
 header > h1 {
@@ -34,6 +35,7 @@ header > h1 {
 
 .user-input {
     background-color: rgb(133, 116, 116);
+    box-shadow: 0 0 3px 0 rgb(133, 116, 116), 0 0 8px 0 rgb(133, 116, 116);
     height: 3.5rem;
     bottom: 1rem;
     left: 0;
@@ -81,9 +83,17 @@ button {
     color: #3c3c3c;
 }
 
+button:hover {
+    background-color: rgb(230, 223, 223);
+}
+
 #reset-button {
     background-color: #362727;
     color: white;
+}
+
+#reset-button:hover {
+    background-color: #632b2b;
 }
 
 /* div setting for js function printText & printUserText */
