@@ -101,7 +101,7 @@ let scenes = [
             printText("(At the bank)")
             printText("You can't rob without all the tools and equipments, a weapon and a companion! Go collect them!")
             goToNextScene(4);
-        } else if (!player.robbedBank) {
+        } else if (player.robbedBank) {
             printText("The police are here! Go somewhere else!")
             goToNextScene(4);
         } else {
@@ -133,7 +133,7 @@ let scenes = [
     },
     onUserInput: function(text) {
         if (text === "1") {
-            printText("The glass is now broken and everyone in the bank is looking at you. The guard comes out and pointing a gun to you. React now!")
+            printText("The glass is now broken and everyone in the bank is scared. The guard has came out and is pointing a gun at you. React now!")
             goToNextScene(9);
         } else if (text === "2") {
             printText("🔥🔥🔥 You have successfully robbed 10M from the bank. Run back to the hidden tunnel now!")
@@ -165,7 +165,7 @@ let scenes = [
 
 { //10 ganster bar 
     onScene: function () {
-        printText("At the bar")
+        printText("(At the bar)")
         if (!player.hasGun && !player.hasCompanion) {
             goToNextScene(11); // 11 ganster bar - first visit 
         } else if (player.hasGun && !player.hasCompanion) {
@@ -285,7 +285,7 @@ let scenes = [
             console.log(player);
             goToNextScene(19); // 19 confirm companion 
         } else if (text === "2") {
-            printText("<b>Fat Roger:</b> Well. Good luck kid")
+            printText("<b>Fat Roger 🧔🏻:</b> Well. Good luck kid")
             goToNextScene(12); //12 ganster bar  - for companion - choose one to talk to 
         } else {
             printText("❌ Invalid option, try again!");
@@ -301,10 +301,10 @@ let scenes = [
     },
     onUserInput: function(text) {
         if (text === "1") {
-            printText("<b>T-rex</b> Unfortunately I am an undercover police. You are under arrested! 👮🏻‍♂️")
+            printText("<b>T-rex 👨🏻‍🦱:</b> Unfortunately I am an undercover police. You are under arrested! 👮🏻‍♂️")
             goToNextScene(33); // 33 gameover
         } else if (text === "2") {
-            printText("<b>T-rex:</b> Hey! Are you sure?")
+            printText("<b>T-rex 👨🏻‍🦱:</b> Hey! Are you sure?")
             goToNextScene(12); //12 ganster bar  - for companion - choose one to talk to 
         } else {
             printText("❌ Invalid option, try again!");
@@ -324,7 +324,7 @@ let scenes = [
             console.log(player);
             goToNextScene(19); // 19 confirm companion 
         } else if (text === "2") {
-            printText("<b>Madman:</b> OK. Your loss")
+            printText("<b>Madman 👱🏻‍♂️:</b> OK. Your loss")
             goToNextScene(12); //12 ganster bar  - for companion - choose one to talk to 
         } else {
             printText("❌ Invalid option, try again!");
@@ -463,22 +463,22 @@ let scenes = [
 
 { //27 gun store 
     onScene: function() {
-        printText("At gun store")
+        printText("(At gun store)")
         if (!player.visitedGunStore) {
             goToNextScene(28); // 28 gun store - first visit
+        } else if (player.hasGun) {
+            printText("The gun store is closed.")
+            goToNextScene(4); // 4 main street
         } else if (player.visitedGunStore && !player.hasTravelBag) {
             printText("<b>Fred 👴🏻:</b> Get me the bag, or I will not sell the gun!")
             goToNextScene(4); // 4 main street
         } else if (player.visitedGunStore && player.hasTravelBag) {
             printText("<b>Fred 👴🏻:</b> Good job! Here is the gun.")
-            printText("<b>Fred 👴🏻:</b> Hold on - Take this empty travel bag with you, otherwise you will be caught if they see you have a AK-47.")
-            printText("⭐️ You have got <b>the AK-47</b>!")
+            printText("<b>Fred 👴🏻:</b> Hold on - Take this empty travel bag with you, otherwise you will be caught if they see you have an AK-47.")
+            printText("⭐️ You have got an <b>AK-47</b>!")
             player.hasTravelBag = true;
             player.hasGun = true;
             goToNextScene(4); // 4 main street 
-        } else if (player.hasGun) {
-            printText("The gun store is closed.")
-            goToNextScene(4); // 4 main street
         }
     }
 },
@@ -568,7 +568,7 @@ let scenes = [
 
 { //33 gameover
     onScene: function() {
-        printText("<b>GAMEOVER🤯</b>")
+        printText("<b>GAMEOVER 🤯</b>")
         printText("📢 If you want to restart the game, press 'Reset' above.")
     },
     onUserInput: function(text) {}
@@ -622,6 +622,7 @@ function printUserText(text) {
     divUser.className = 'chatbox-user';
     divUser.innerHTML = text; // how do i know this = text?
     document.getElementById('content').appendChild(divUser);
+    divUser.scrollIntoView();
 }
 
 function printText(text) {
@@ -629,4 +630,5 @@ function printText(text) {
     divSystem.className = 'chatbox-system';
     divSystem.innerHTML = text;
     document.getElementById('content').appendChild(divSystem);
+    divSystem.scrollIntoView();
 }
