@@ -570,6 +570,19 @@ function addEventListeners() {
 
     const resetButton = document.getElementById('reset-button');
     resetButton.onclick = resetAll; 
+
+    const input = document.getElementById('userInput');
+    input.addEventListener('keydown', pressedEnter);
+}
+
+/**
+ * Set the Enter key to call the same function as 'Send' pressed 
+ * @param {KeyboardEvent} event 
+ */
+function pressedEnter(event) {
+    if (event.key === "Enter") {
+        onUserInput();
+    }
 }
 
 /** Process the user input from <input> element and print it */
