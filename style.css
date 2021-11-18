@@ -73,6 +73,10 @@ footer {
     height: 1rem;
 }
 
+.fab {
+    margin-left: 0.2rem;
+}
+
 /* buttons */ 
 
 button {
@@ -85,13 +89,15 @@ button {
     color: #3c3c3c;
 }
 
-button:hover { background-color: rgb(230, 223, 223); }
-#reset-button:hover { background-color: #632b2b; }
-
 #reset-button {
     background-color: #362727;
     color: white;
 }
+
+/* hover effects */
+button:hover { background-color: rgb(230, 223, 223); }
+#reset-button:hover { background-color: #632b2b; }
+.fab:hover { color: rgb(230, 223, 223); }
 
 /* div setting for js function printText & printUserText */
 
@@ -145,6 +151,7 @@ button:hover { background-color: rgb(230, 223, 223); }
     #content {
         padding-left: 3rem;
         padding-right: 3rem;
+        width: 70%;
     }
 
     .chatbox-system { width: 70%; }
