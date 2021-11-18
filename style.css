@@ -64,6 +64,8 @@ input {
 
 /* footer */
 
+.fab { margin-left: 0.2rem; }
+
 footer {
     background-color: rgb(133, 116, 116);
     color: white;
@@ -72,8 +74,6 @@ footer {
     right: 0;
     height: 1rem;
 }
-
-.fab { margin-left: 0.2rem; }
 
 /* buttons */ 
 
@@ -127,6 +127,7 @@ button:hover { background-color: rgb(230, 223, 223); }
 }
 
 @media (min-width: 1200px) {
+    
     main {
         width: 100%; 
         justify-content: space-between;
