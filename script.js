@@ -537,7 +537,7 @@ let scenes = [
 },
 { //32 pharmacy - crack the code 
     onScene: function() {
-        printTextWithDelay("You have found the locker! But what is the passcode?" + "<br>" + "<b>1 = 4589; 2 = 4689; 3 = 4789</b>", 2000)
+        printTextWithDelay("You have found the locker! But what is the passcode?" + "<br>" + "<b>1 = 4598; 2 = 4698; 3 = 4798</b>", 2000)
     },
     onUserInput(text) {
         if (text === "2") {
@@ -576,7 +576,7 @@ function addEventListeners() {
 }
 
 /**
- * Set the Enter key to call the same function as 'Send' pressed 
+ * Set the 'Enter' key to call the same function as 'Send' pressed 
  * @param {KeyboardEvent} event 
  */
 function pressedEnter(event) {
@@ -606,7 +606,7 @@ function renderScene() {
   */
 function goToNextScene(newScene) {  
     console.log("Going from scene: " + activeScene + " to " + newScene)
-    activeScene = newScene; //dont understand
+    activeScene = newScene; 
     renderScene();
 }
 
