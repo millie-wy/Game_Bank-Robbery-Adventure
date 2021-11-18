@@ -24,7 +24,7 @@ console.log(player)
 let activeScene = 0;
 
 /**
- * @typedef {( onScene: function(), onUserInput: function() )} scene a scene object 
+ * @typedef {( onScene: Function, onUserInput: Function )} scene a scene object 
  */
 let scenes = [
 { //0. input name
