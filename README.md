@@ -1,6 +1,5 @@
 # Minigame - Bank Robbery Adventure
-Millie Cheung - FED21G 
-----
+
 (Svenska)
 **Bankrånsäventyr**
  
