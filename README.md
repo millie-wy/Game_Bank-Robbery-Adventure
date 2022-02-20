@@ -11,7 +11,7 @@ Beskrivning: I denna fantasivärld är du en blivande rånare under gänget som 
 
 Description: In this imaginary world, you are a robber-to-be under the gang InvincibleDestroyers. Your leader has given you a mission to rob a bank to show your ability and courage, but before that, you must collect some tools, a weapon and a companion... 
 
-Demo: https://millie-wy.github.io/Minigame_Bank-Robbery-Adventure/
+Demo:  https://millie-wy.github.io/Game_Bank-Robbery-Adventure/
 
 ----
 (Detta är ett individuelt uppdrag från skolan. / This is an individual assignment from my school.)
